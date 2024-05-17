@@ -6,7 +6,6 @@ LLMDTA: Improving Cold-Start Prediction in Drug-Target Affinity with Biological 
 
 ## Requirements
 
-fair_esm==2.0.1 \
 gensim==4.3.1 \
 matplotlib==3.2.2 \
 mol2vec==0.1 \
@@ -17,9 +16,10 @@ scikit_learn==1.2.2 \
 scipy==1.8.1 \
 torch==1.8.2 \
 tqdm==4.65.0 \
-ESM2: https://github.com/facebookresearch/esm#available-models
 
-## Example Usage:
+Install [ESM2](https://github.com/facebookresearch/esm) from repo.
+
+## Example Usage
 
 ### Training with Davis\KIBA\Metz
 
@@ -37,7 +37,7 @@ self.protvec_dir    : the targets pretraining feature
 self.drugs_dir      : drugs list
 self.prots_dir      : targets list
 
-self.cuda           : set the nv gpu device
+self.cuda           : set the gpu device
 ```
 
 3. RUN `python train.py`
@@ -68,7 +68,7 @@ In code_prepareEmb folder, we provide notbooks to generate pretrained embedding 
 ### Prediction
 
 1. Prepare the drugs and targets in CSV like format.
-2. Config the hyperparameter4pred.py file.
+2. Config the `hyperparameter4pred.py` file.
 
 ```
 self.word2vec_pth   : the pretrained word2vec feature
