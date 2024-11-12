@@ -7,11 +7,11 @@ class HyperParameter:
         self.word2vec_pth = './data/model_300dim.pkl'
         
         # predict file info
-        self.pred_dataset = 'egfr'
-        self.sep = '\t'
+        self.pred_dataset = 'simple-case'
+        self.sep = ','
         
-        self.pred_pair_pth = ''
-        self.pair_col_name = ['drug_id', 'prot_id','drug_smile', 'prot_seq', 'affinity']
+        self.pred_pair_pth = './data/simple-Case/predict.csv'
+        self.pair_col_name = ['drug_id', 'prot_id','drug_smile', 'prot_seq']
         
         self.pred_drug_dir = './data/EGFR-Case/drug.tsv'
         self.pred_prot_dir = './data/EGFR-Case/prot.tsv'

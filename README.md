@@ -19,6 +19,20 @@ tqdm==4.65.0 \
 
 Install [ESM2](https://github.com/facebookresearch/esm) from repo.
 
+## Resources
+
+- code
+  - train.py: Run Script for training.
+  - pred.py: Run script for inference.
+  - hyperparameter.py: Config for trainning.
+  - hyperparameter4pred.py: Config for inference.
+  - ...
+- code_prepareEmb
+  - \_Split5FoldDataset.ipynb: Splite 5-fold CV dataset.
+  - \_PreparePretrain.ipynb: In training stage, compute and dump pretraining embeddings.
+- data: place training and inference dataset
+- savemodel: place inference model.
+
 ## Example Usage
 
 ### Training with Davis\KIBA\Metz
@@ -40,7 +54,7 @@ self.prots_dir      : targets list
 self.cuda           : set the gpu device
 ```
 
-3. RUN `python train.py`
+3. RUN `python code/train.py`
 
 ### Training from Your Dataset
 
@@ -63,22 +77,28 @@ In code_prepareEmb folder, we provide notbooks to generate pretrained embedding 
 
 3. Config `hyperparameter.py`
 
-4. RUN. `python train.py`
+4. RUN. `python code/train.py`
 
 ### Prediction
 
-1. Prepare the drugs and targets in CSV like format.
+1. Prepare the drugs and targets in CSV like format.\
+   There support two types of inference data.
+
+- User offer Drug-target pairs, [drug_id, prot_id, smiles, prot_seq]
+- User offer drug list and target list separately. The inference script automatically computes all possible pairs and makes predictions.
+  - drug.csv, [drug_id, drug_smile]
+  - prot.csv, [prot_id, prot_seq]
+
 2. Config the `hyperparameter4pred.py` file.
 
 ```
-self.word2vec_pth   : the pretrained word2vec feature
 self.pred_dataset   : the prediction task name, for saving result
 self.sep            : the separator while reading drugs/target list
 
-self.pred_drug_dir  : the drugs list file
-self.pred_prot_dir  : the target list file
-self.d_col_name     : the col names of drugs file
-self.p_col_name     : the col names of targets file
+self.pred_pair_pth  : inference type 1, the drug-target file
+
+self.pred_drug_dir  : type 2, the drugs list file
+self.pred_prot_dir  : type 2, the target list file
 
 self.model_fromTrain    : the pretrained model
 ```

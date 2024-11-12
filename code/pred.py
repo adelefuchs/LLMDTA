@@ -77,14 +77,14 @@ print('Load pred data over.')
 
 # Test
 predModel = nn.DataParallel(LLMDTA(hp, device))  
-predModel.load_state_dict(torch.load(model_fromTrain))
+predModel.load_state_dict(torch.load(model_fromTrain, map_location=device))
 print('Load model over.')
 predModel = predModel.to(device)    
 pred = test(predModel, test_dataset_load)
 
-df = pred_pairs
-df['pred'] = pred
+output_df = pred_pairs[['drug_id', 'prot_id']]    
+output_df.loc[:, 'pred'] = pd.Series([round(p, 3) for p in pred])
 date_str = datetime.now().strftime('%b%d_%H-%M-%S')
 save_path = f'./Pred_{pred_task_name}_{date_str}.csv'
-df.to_csv(f'{save_path}', index=False)
+output_df.to_csv(f'{save_path}', index=False)
 print(f'Predict over {save_path}.')

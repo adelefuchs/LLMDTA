@@ -1,6 +1,12 @@
+code/__pycache__
 data/davis.zip
 data/pretrained-feature.zip
 data/dta-origin-dataset
 data/pretrained-feature
 data/EGFR-Case
 data/pretrain-feature.zip
+测试说明.docx
+data/egfr_esm_pretrain.pkl
+data/egfr_mol_pretrain.pkl
+data/simple-case_esm_pretrain.pkl
+data/simple-case_mol_pretrain.pkl
